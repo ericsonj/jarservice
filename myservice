@@ -1,0 +1,32 @@
+#!/bin/sh
+
+case "$1" in 
+start)
+   echo "START MY SERVICE" >> /tmp/myservice.log
+   /usr/bin/java -jar /root/ServiceTest.jar >> /tmp/myservice.log &
+   echo $!>/var/run/hi/myservice.pid
+   ;;
+stop)
+   echo "STOP MY SERVICE" >> /tmp/myservice.log
+   kill `cat /var/run/myservice.pid`
+   rm /var/run/myservice.pid
+   ;;
+restart)
+   echo "RESTART MY SERVICE" >> /tmp/myservice.log
+   $0 stop
+   $0 start
+   ;;
+status)
+   if [ -e /var/run/myservice.pid ]; then
+      echo myservice is running, pid=`cat /var/run/myservice.pid`
+   else
+      echo myservice is NOT running
+      exit 1
+   fi
+   echo "STATUS MY SERVICE" >> /tmp/myservice.log
+   ;;
+*)
+   echo "Usage: $0 {start|stop|status|restart}"
+esac
+
+exit 0

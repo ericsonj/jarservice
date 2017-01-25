@@ -1,0 +1,12 @@
+HOW TO INSTALL
+
+1. Rename and edit myservice.
+2. Save myservice.
+3. Rename and edit myservice.service
+4. Copy myservice.service to /etc/systemd/system/
+5. run: systemctl daemon-reload
+6. Start: systemctl start myservice
+7. Stop:  systemctl stop myservice
+8. Restart: systemctl restart myservice
+9. Enable: systemctl enable myservice
+10. Desable: systemctl desable myservice

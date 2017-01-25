@@ -1,0 +1,12 @@
+[Unit]
+Description=MyService
+
+[Service]
+Type=oneshot
+ExecStart=/<path>/myservice start
+ExecStop=/<path>/myservice stop
+ExecReload=/<path>/myservice restart
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
